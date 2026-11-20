@@ -1,0 +1,15 @@
+services:
+  api:
+    image: ghcr.io/petercodez/projeto-final-devsecops:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      args:
+        APP_VERSION: ${IMAGE_TAG:-dev}
+    container_name: todo-api
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      APP_VERSION: ${IMAGE_TAG:-dev}
+    restart: unless-stopped
